@@ -2,7 +2,7 @@ import { ContactForm } from "../components/ContactForm/ContactForm.jsx";
 import { FilterComponent } from "../components/FilterComponent/FilterComponent.jsx";
 import { ContactList } from "../components/ContactList/ContactList.jsx";
 
-export const Contacts  = () => {
+const Contacts  = () => {
     return(
       <>
         <div className="Container">
@@ -17,3 +17,5 @@ export const Contacts  = () => {
       </> 
     )
 }
+
+export default Contacts;

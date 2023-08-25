@@ -1,18 +1,17 @@
-import { UserMenu } from "../../components/UserMenu/UserMenu.jsx";
+// import { useAuth } from "../../hooks/useAuth.js";
+// import { UserMenu } from "../../components/UserMenu/UserMenu.jsx";
 import { NavLink, Outlet } from "react-router-dom";
+// import { AuthNav } from "../AuthNav/AuthNav.jsx";
+import { AppBar } from "../../components/AppBar/AppBar.jsx";
+import { Suspense } from "react";
 
 export const SharedLayout = () => {
     return(
         <div>
-            <nav>
-                <ul>
-                    <li><NavLink to="/login">Login</NavLink></li>
-                    <li><NavLink to="/register">Register</NavLink></li>
-                    <li><NavLink to="/contacts">User</NavLink></li>
-                </ul>      
-                <UserMenu/>
-            </nav>
-            <Outlet/>
+            <AppBar/>
+            <Suspense fallback={null}>
+                <Outlet/>
+            </Suspense>
         </div>
     )
 }

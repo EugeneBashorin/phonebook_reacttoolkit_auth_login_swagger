@@ -1,8 +1,7 @@
 import { useDispatch } from "react-redux";
 import { register } from "redux/auth/operation";
 
-
-export const Register = () => {
+const Register = () => {
     const dispatch = useDispatch();
     
     const handleRegisterFormSubmit = event =>{
@@ -30,3 +29,5 @@ export const Register = () => {
         </div>
     )
 }
+
+export default Register;
