@@ -1,5 +1,5 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { favoriteFilterReducer } from "./contacts/favoriteFilterSlice";
+// import { favoriteFilterReducer } from "./contacts/favoriteFilterSlice";
 import { userFilterReducer } from "./contacts/userFilterSlice";
 import { usersApi } from "./contacts/userSlice";
 import { authReducer } from "./auth/authSlice";
@@ -24,7 +24,7 @@ import {
 const rootReducer = combineReducers({
     auth: persistReducer(authPersistConfig, authReducer),
     [usersApi.reducerPath]: usersApi.reducer,       // user reducer
-    favoriteFilter: favoriteFilterReducer,
+    // favoriteFilter: favoriteFilterReducer,
     userFilter: userFilterReducer,
 });
 

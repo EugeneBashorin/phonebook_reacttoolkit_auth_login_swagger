@@ -1,40 +1,62 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { getTokenFromLocalStorage } from './utility';
 
 export const usersApi = createApi({
     reducerPath: 'user',
-    baseQuery: fetchBaseQuery({ baseUrl: 'https://64a03db3ed3c41bdd7a720ce.mockapi.io' }),
-    tagTypes: ['user'],
+    baseQuery: fetchBaseQuery({ 
+    baseUrl: 'https://connections-api.herokuapp.com' }),
+    tagTypes: ['User'],
+
     endpoints: (builder) => ({
 
       getUsers: builder.query({
-        query: () => `/contacts`,
-        providesTags:['user']
+        query: () => ({
+          url: `/contacts`,
+          method: 'GET',
+          providesTags: ['User'],
+          headers: {
+            Authorization: `Bearer ${getTokenFromLocalStorage()}`,
+        },
+        }),
+        providesTags: ['User'],
       }),
 
       addUsers: builder.mutation({
         query: (values) => ({
             url: `/contacts`,
             method: 'POST',
+
+            headers: {
+              Authorization: `Bearer ${getTokenFromLocalStorage()}`,
+              },
             body: values,
         }),
-        invalidatesTags:['user']
+        invalidatesTags: ['User'],
       }),
 
       deleteUser: builder.mutation({
         query: (id) => ({
             url: `/contacts/${id}`,
             method:'DELETE',
+
+            headers: {
+              Authorization: `Bearer ${getTokenFromLocalStorage()}`,
+              },
         }),
-        invalidatesTags:['user']
+        invalidatesTags: ['User'],
       }),
 
-      changeFavoriteStatus: builder.mutation({
+      editUser: builder.mutation({
         query: (value) => ({
             url: `/contacts/${value.id}`,
-            method:'PUT',
-            body: {...value, favorites: !value.favorites},
+            method:'PATCH',
+
+            headers: {
+              Authorization: `Bearer ${getTokenFromLocalStorage()}`,
+              },
+            body: {name: value.name, number: value.number},
         }),
-        invalidatesTags:['user']
+        invalidatesTags: ['User'],
       }),
 
     }),
@@ -42,7 +64,7 @@ export const usersApi = createApi({
 
 export const { 
     useGetUsersQuery, 
-    useChangeFavoriteStatusMutation, 
     useAddUsersMutation, 
-    useDeleteUserMutation 
+    useDeleteUserMutation,
+    useEditUserMutation, 
 } = usersApi;

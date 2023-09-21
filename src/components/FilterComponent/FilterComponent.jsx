@@ -1,22 +1,12 @@
 import React from "react";
 import { useDispatch } from 'react-redux';
-import { statusFavoriteFilters } from 'redux/contacts/constants';
-import { setStatusFilter } from 'redux/contacts/favoriteFilterSlice';
 import { setValueFilter } from 'redux/contacts/userFilterSlice';
 import { LabelEl, InputEl, InputElCheck, LabelCheck, FilterSection } from './FilterComponent.styled';
 
 export const FilterComponent = () => {
     const dispatch = useDispatch();
-    function handleCheckboxChange(event){
-        const isFavorite = event.target.checked;
-        dispatch(setStatusFilter(isFavorite? statusFavoriteFilters.favorites : statusFavoriteFilters.all))
-    }
     const showFilteredList = (event) =>{
       switch(event.target.name){
-        case "favorites":
-          const isFavorite = event.target.checked;
-          dispatch(setStatusFilter(isFavorite? statusFavoriteFilters.favorites : statusFavoriteFilters.all))
-          break;
         case "filter":
           const filterValue = event.target.value;
           dispatch(setValueFilter(filterValue));
@@ -38,12 +28,6 @@ export const FilterComponent = () => {
                 required
                 />
             </LabelEl>
-            <LabelCheck>Show favorites</LabelCheck>
-            <InputElCheck
-                type="checkbox"
-                name="favorites"
-                onChange={handleCheckboxChange}
-            />  
         </FilterSection>  
     )
 }

@@ -8,8 +8,20 @@ export const UserMenu = () => {
 
     return(
         <>
-            <p>Welcome, {user.name} {user.email}</p>
-            <button type="button" onClick={()=>dispatch(logout())}>Logout</button>
+        <ul>
+            <li>
+                Hi, {user.name} {user.email}
+                <button type="button" onClick={()=>dispatch(logout())}>Logout</button>
+            </li>
+            <li>
+                <button type="button">Add</button>
+                </li>
+            <li>
+                <button type="button">Find</button>
+            </li>
+        </ul>
+            {/* <p>Hi, {user.name} {user.email}</p>
+            <button type="button" onClick={()=>dispatch(logout())}>Logout</button> */}
         </>
     )
 }

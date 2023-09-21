@@ -9,10 +9,6 @@ import { useAddUsersMutation } from "../../redux/contacts/userSlice";
 const Input = styled(Field)`
     width: 150px;
 `
-const InputCheckBox = styled(Field)`
-    width: 15px;
-    margin-right: 10px;
-`
 const FormTag = styled(Form)`
     width: 350px;
 `
@@ -25,21 +21,18 @@ const schema = Yup.object({
                 .matches(/^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/, nameErrorMessage)
                 .required('Required'),
 
-    phoneNumber: Yup.string()
+    number: Yup.string()
                 .required('Required')
                 .matches(/\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/, phoneErrorMessage),
-
-    favorites: Yup.boolean(),
 })
 
 const initialValues = {
     name:'',
-    phoneNumber:'',
-    favorites: false,
+    number:'',
 }
 
 export const ContactForm = () => { 
-    const [addUsers, relultFetchInfo] = useAddUsersMutation();
+    const [addUsers, resultFetchInfo] = useAddUsersMutation();
     const handleSubmit = (values, action) => {
         try {
          addUsers(values);
@@ -50,10 +43,10 @@ export const ContactForm = () => {
     }
     return(
     <>  
-            <Formik
-                initialValues={initialValues}  
-                validationSchema={schema}
-                onSubmit={handleSubmit}
+        <Formik
+              initialValues={initialValues}  
+              validationSchema={schema}
+              onSubmit={handleSubmit}
             >   
         {({values, handleChange})  =>  
             (<FormTag> 
@@ -65,13 +58,9 @@ export const ContactForm = () => {
                     </LabelEl>
                     <LabelEl>
                         Number
-                        <Input type="tel" name="phoneNumber" value={values.phoneNumber} onChange={handleChange} />
-                            <ErrorMessage component="div" name="phoneNumber"/>
+                        <Input type="tel" name="number" value={values.number} onChange={handleChange} />
+                            <ErrorMessage component="div" name="number"/>
                     </LabelEl>
-
-                    <LabelElFavorite>
-                        <InputCheckBox type="checkbox" name="favorites"/> Add to favorites
-                    </LabelElFavorite>
                     <Button type="submit">Add contact</Button> 
                 </fieldset>
             </FormTag>)}
@@ -82,6 +71,5 @@ export const ContactForm = () => {
 
 ContactForm.propTypes = {
     name: PropTypes.string,
-    phoneNumber: PropTypes.number,
-    favorites: PropTypes.bool,
+    number: PropTypes.number,
 }

@@ -3,7 +3,7 @@
 // import { FilterComponent } from "./FilterComponent/FilterComponent";
 // import { SectionBlock } from "./App.styled.jsx"
 import {lazy, useEffect} from "react";
-import { Route, Routes, NavLink } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import {NotFound} from "../pages/NotFound";
 import { SharedLayout } from "./SharedLayout/SharedLayout.jsx";
