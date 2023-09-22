@@ -12,10 +12,6 @@ const { data, error, isLoading } = useGetUsersQuery();
 const namesList = data;
 const filterValue = useSelector (getFilterData);
 
-// useEffect(()=>{
-//     const { data, error, isLoading } = useGetUsersQuery();
-// },[data, isLoading]);
-
 const filteredUsers = getFilteredUsersList(namesList, filterValue);
     return (
     <>
